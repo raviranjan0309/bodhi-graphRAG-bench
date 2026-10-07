@@ -77,7 +77,7 @@ Our answers to these questions are included in the answers files.
 
 | File | Contents |
 |---|---|
-| `novel/answers.jsonl`, `medical/answers.jsonl` | One line per question: `id`, `source`, `question_type`, `question`, `generated_answer`, `ground_truth`, `retrieved_contexts` |
-| `novel/official_eval_output.json`, `medical/official_eval_output.json` | Full detailed output of the official evaluation script (first pass) |
-| `novel/official_eval_output_retry.json`, `medical/official_eval_output_retry.json` | Output of the retry of dropped questions |
+| `graphrag_bench_submission/novel/answers.jsonl`, `graphrag_bench_submission/medical/answers.jsonl` | One line per question: `id`, `source`, `question_type`, `question`, `generated_answer`, `ground_truth`, `retrieved_contexts` |
+| `graphrag_bench_submission/novel/official_eval_output.json`, `graphrag_bench_submission/medical/official_eval_output.json` | Full detailed output of the official evaluation script (first pass) |
+| `graphrag_bench_submission/novel/official_eval_output_retry.json`, `graphrag_bench_submission/medical/official_eval_output_retry.json` | Output of the retry of dropped questions |
 
