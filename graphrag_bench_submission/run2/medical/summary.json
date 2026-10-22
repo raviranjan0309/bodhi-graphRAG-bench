@@ -1,0 +1,26 @@
+{
+ "Fact Retrieval": {
+  "answer_correctness": 76.26,
+  "evaluated": 1098,
+  "rouge_score": 50.67
+ },
+ "Complex Reasoning": {
+  "answer_correctness": 75.53,
+  "evaluated": 509,
+  "rouge_score": 32.18
+ },
+ "Contextual Summarize": {
+  "answer_correctness": 76.4,
+  "evaluated": 288,
+  "coverage_score": 51.79
+ },
+ "Creative Generation": {
+  "answer_correctness": 75.48,
+  "evaluated": 166,
+  "coverage_score": 51.98,
+  "faithfulness": 53.61
+ },
+ "Average": 75.92,
+ "answered": 2062,
+ "http_200": 2062
+}
