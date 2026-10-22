@@ -159,7 +159,7 @@ python -m Evaluation.generation_eval \
   --mode API \
   --model gpt-4o-mini \
   --embedding_model BAAI/bge-large-en-v1.5 \
-  --data_file <path_to_answers>/answers_novel.json \
+  --data_file answers_novel.json \
   --output_file scores_novel.json \
   --detailed_output
 
@@ -168,7 +168,7 @@ python -m Evaluation.generation_eval \
   --mode API \
   --model gpt-4o-mini \
   --embedding_model BAAI/bge-large-en-v1.5 \
-  --data_file <path_to_answers>/answers_medical.json \
+  --data_file answers_medical.json \
   --output_file scores_medical.json \
   --detailed_output
 ```
@@ -177,7 +177,9 @@ python -m Evaluation.generation_eval \
 
 To average multiple runs:
 ```bash
-python scripts/summarize_scores.py run1/scores_novel run2/scores_novel
+# Summarize your newly generated run, or our provided submission runs:
+python scripts/summarize_scores.py scores_novel
+python scripts/summarize_scores.py graphrag_bench_submission/run1/novel graphrag_bench_submission/run2/novel
 ```
 
 ## 4. System description
@@ -189,16 +191,13 @@ summaries, with vector and full-text indexes.
 
 **Retrieval (hybrid search, the default for documents).** Four legs run per question and are fused with Reciprocal
 Rank Fusion: an LLM-generated graph (Cypher) query, vector search over chunks and entities, vector search over
-relationships, and BM25 full-text search over chunk text. The fused list is deduplicated and reranked with a
-cross-encoder to 20 items.
+relationships, and BM25 full-text search over chunk text. The fused list is deduplicated and reranked to 20 items.
 
 ## 5. Configuration of the reported runs
 
 | Item | Value |
 |---|---|
 | Answer generation | `gpt-4o-mini`, temperature 0.7, max_tokens 2048 |
-| Retrieval embedding model | OpenAI `text-embedding-3-small` (1536 dimensions) |
-| Reranker | cross-encoder `cross-encoder/ms-marco-MiniLM-L6-v2` |
 | Retrieval legs | vector and relationship-vector: 25 candidates each, Cypher: 50 rows (10 / 10 / 20 for questions worded as broad overviews or creative tasks); BM25 full text: 10 |
 | Fusion and context | RRF; near-duplicate removal at 0.92 similarity; rerank to 20 items |
 | Evaluation | `Evaluation/generation_eval.py` at commit `fdbab59`, unmodified; `--mode API --model gpt-4o-mini --embedding_model BAAI/bge-large-en-v1.5 --detailed_output`; judge `gpt-4o-mini` through an internal LiteLLM gateway that routes to OpenAI `gpt-4o-mini` |
